@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Employee Directory</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>Employee Directory</h1>
+  <p class="subtitle">Spring Boot · JDBC · HTML/CSS/JS</p>
+</header>
+
+<main>
+  <section aria-labelledby="stats-heading">
+    <h2 id="stats-heading">Headcount</h2>
+    <ul id="headcount" class="stats"></ul>
+  </section>
+
+  <section aria-labelledby="list-heading">
+    <div class="toolbar">
+      <h2 id="list-heading">Employees</h2>
+      <label>Department
+        <select id="filter"><option value="">All</option></select>
+      </label>
+      <a class="button secondary" href="/api/employees/export">Export CSV</a>
+      <form id="import-form" class="inline">
+        <label class="button secondary">Import CSV
+          <input id="import-file" type="file" accept=".csv,text/csv" hidden>
+        </label>
+      </form>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+        <tr><th>Name</th><th>Email</th><th>Role</th><th class="num">Salary</th><th>Hired</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="form-heading">
+    <h2 id="form-heading">Add employee</h2>
+    <form id="employee-form" novalidate>
+      <input type="hidden" name="id">
+      <div class="grid">
+        <label>First name <input name="firstName" required maxlength="50"></label>
+        <label>Last name <input name="lastName" required maxlength="50"></label>
+        <label>Email <input name="email" type="email" required maxlength="100"></label>
+        <label>Department <select name="department" required></select></label>
+        <label>Job title <input name="jobTitle" required maxlength="100"></label>
+        <label>Salary <input name="salary" type="number" min="0" step="0.01" required></label>
+        <label>Hire date <input name="hireDate" type="date" required></label>
+      </div>
+      <div class="actions">
+        <button type="submit" id="submit">Add</button>
+        <button type="button" id="cancel" class="secondary" hidden>Cancel edit</button>
+      </div>
+    </form>
+  </section>
+
+  <p id="message" role="status" aria-live="polite"></p>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
